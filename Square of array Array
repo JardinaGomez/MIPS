@@ -1,0 +1,38 @@
+# Assembly Language 
+# taken from a problem in a ZyBooks Lab  
+# Author: Jardina Gomez
+# Purpose: To square the values of a given array into a new array 
+
+#Assuming that $s0 and $s1 are already initialized and have the memory location of 4000 and 5000
+
+# Type your code here.
+# Do not initialize $s0 and $s1 here. 
+# Use the + button under the Register display to initialize $s0 and $s1.
+
+# Create a counter loop and an indez counter for the given array
+addi $t0, $zero, 4          
+addi $t1, $zero, 0          
+
+
+#Squares the value of the given array cell
+loop:
+ # load the number of the array into $t2
+lw $t2, 0($s0)   
+# square the number
+mul  $t2, $t2, $t2  
+# store the squared number in the new array that is stored in $s1
+sw   $t2, 0($s1)    
+# move to the next memory location in the given array and move to the next memory location into the new array
+addi $s0, $s0, 4    
+addi $s1, $s1, 4 
+# increment the array index
+addi $t1, $t1, 1   
+# if array index is not equal to 4, repeat the loop
+bne  $t1, $t0, loop 
+
+
+# Zybooks does not require you to code for a program exit 
+# But this is where you woul end the prgram wil system call 10 
+#
+
+
